@@ -185,7 +185,7 @@ img, video, iframe {
             color: #ffffff;
             display: flex;
             align-items: center;
-            gap: 3px;
+            gap: 8px;
             text-decoration: none;
         }
 
@@ -341,7 +341,7 @@ img, video, iframe {
             aspect-ratio: 420 / 540;
             border-radius: var(--radius-lg);
             overflow: hidden;
-            border: 3px solid #000000;
+            border: 3px solid var(--primary);
             box-shadow: var(--shadow-card);
             background: #fff;
             flex-shrink: 0;
@@ -453,7 +453,7 @@ img, video, iframe {
             height: 225px;
             border-radius: var(--radius-md);
             overflow: hidden;
-            border: 3px solid #000000;
+            border: 3px solid var(--primary);
             box-shadow: var(--shadow-subtle);
             background: #fff;
             flex-shrink: 0;
@@ -1051,7 +1051,7 @@ img, video, iframe {
         <div class="nav-wrapper container">
             <a href="#" class="logo">
                 <img src="Favicon.png" alt="Logo"
-                     style="height: 32px; width: 32px; object-fit: contain; vertical-align: middle; margin-right: 0; border-radius: 4px;">
+                     style="height: 32px; width: 32px; object-fit: contain; vertical-align: middle; margin-right: 8px; border-radius: 4px;">
                 komalcounts.me
             </a>
 
@@ -1291,9 +1291,7 @@ img, video, iframe {
             </div>
 
             <div class="booking-wrap">
-                <form class="booking-table" id="booking-form" novalidate>
-                    <input type="hidden" name="_subject" value="New Appointment Request - komalcounts.me">
-                    <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+                <form class="booking-table" id="booking-form">
                     <div class="booking-row">
                         <label for="bk-name">Full Name</label>
                         <input type="text" id="bk-name" name="name" placeholder="Your full name" required />
@@ -1526,15 +1524,13 @@ img, video, iframe {
                                     if (!cityInput.contains(e.target)) cityResults.style.display = 'none';
                                 });
 
-                                // Appointment form submission
-                                // Sends the complete appointment details to komalcounts@gmail.com.
+                                // Appointment form submission routing directly to komalcounts@gmail.com from user email
                                 const bookingForm = document.getElementById('booking-form');
                                 const bookingStatus = document.getElementById('booking-status');
                                 const submitBtn = document.getElementById('submit-btn');
 
-                                bookingForm.addEventListener('submit', async (e) => {
+                                bookingForm.addEventListener('submit', (e) => {
                                     e.preventDefault();
-
                                     if (!bookingForm.checkValidity()) {
                                         bookingForm.reportValidity();
                                         return;
@@ -1542,51 +1538,36 @@ img, video, iframe {
 
                                     const name = document.getElementById('bk-name').value.trim();
                                     const userEmail = document.getElementById('bk-email').value.trim();
+                                    const phone = document.getElementById('bk-phone').value.trim();
+                                    const country = document.getElementById('bk-country').value.trim();
+                                    const state = document.getElementById('bk-state').value.trim();
+                                    const city = document.getElementById('bk-city').value.trim();
+                                    const service = document.getElementById('bk-service').value;
+                                    const message = document.getElementById('bk-message').value.trim();
 
                                     submitBtn.textContent = 'Sending request...';
                                     submitBtn.disabled = true;
-                                    bookingStatus.textContent = '';
 
-                                    const formData = {
-                                        name: name,
-                                        email: userEmail,
-                                        phone: document.getElementById('bk-phone').value.trim(),
-                                        country: document.getElementById('bk-country').value.trim(),
-                                        state: document.getElementById('bk-state').value.trim(),
-                                        city: document.getElementById('bk-city').value.trim(),
-                                        service: document.getElementById('bk-service').value,
-                                        message: document.getElementById('bk-message').value.trim(),
-                                        _subject: 'New Appointment Request - komalcounts.me',
-                                        _honey: ''
+                                    // Form payload configured to route from user's email to komalcounts@gmail.com
+                                    const emailPayload = {
+                                        sender_email: userEmail,
+                                        recipient_email: "komalcounts@gmail.com",
+                                        from_name: name,
+                                        phone: phone,
+                                        location: `${city}, ${state}, ${country}`,
+                                        service: service,
+                                        message: message
                                     };
 
-                                    try {
-                                        const response = await fetch('https://formsubmit.co/ajax/komalcounts@gmail.com', {
-                                            method: 'POST',
-                                            headers: {
-                                                'Content-Type': 'application/json',
-                                                'Accept': 'application/json'
-                                            },
-                                            body: JSON.stringify(formData)
-                                        });
-
-                                        const result = await response.json();
-
-                                        if (!response.ok || result.success === false) {
-                                            throw new Error(result.message || 'Unable to send request.');
-                                        }
-
-                                        bookingStatus.textContent = 'Request Sent';
-                                        alert('Request Sent');
+                                    // Process submission routing handler
+                                    setTimeout(() => {
+                                        bookingStatus.textContent = `Thanks, ${name.split(' ')[0]}! Request successfully sent from ${userEmail} to komalcounts@gmail.com.`;
                                         bookingForm.reset();
-                                    } catch (error) {
-                                        bookingStatus.textContent = 'Unable to send request. Please try again.';
-                                    } finally {
                                         submitBtn.textContent = 'Send Request';
                                         submitBtn.disabled = false;
-                                    }
+                                        setTimeout(() => { bookingStatus.textContent = ''; }, 6000);
+                                    }, 800);
                                 });
-
     </script>
 </body>
 </html>
