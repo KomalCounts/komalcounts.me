@@ -925,6 +925,7 @@ img, video, iframe {
                 transform: translateY(-2px);
             }
 
+        /* Mobile navigation */
         @media (max-width: 900px) {
             .tax-cards-grid, .stats-grid, .features-grid {
                 grid-template-columns: 1fr;
@@ -972,37 +973,47 @@ img, video, iframe {
             .founder-heading-group {
                 justify-content: center;
             }
-        }
+
+            /* Show hamburger on mobile/tablet */
+            .nav-toggle {
+                display: flex;
+            }
+
+            /* Hide desktop links until hamburger is clicked */
             .nav-links {
                 position: absolute;
                 top: var(--header-h);
                 left: 0;
                 right: 0;
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: stretch;
                 gap: 0;
                 background: rgba(14, 29, 46, 0.98);
                 backdrop-filter: blur(16px);
                 border-bottom: 1px solid rgba(255, 255, 255, 0.08);
                 max-height: 0;
                 overflow: hidden;
-                transition: max-height 0.35s ease;
+                opacity: 0;
+                visibility: hidden;
+                transition: max-height 0.35s ease, opacity 0.25s ease, visibility 0.25s ease;
             }
 
-                .nav-links.open {
-                    max-height: 280px;
-                }
+            .nav-links.open {
+                max-height: 320px;
+                opacity: 1;
+                visibility: visible;
+            }
 
-                .nav-links li {
-                    width: 100%;
-                }
+            .nav-links li {
+                width: 100%;
+            }
 
-                .nav-links a {
-                    display: block;
-                    padding: 14px 20px;
-                    width: 100%;
-                    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-                }
+            .nav-links a {
+                display: block;
+                padding: 14px 20px;
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            }
 
             .booking-table {
                 grid-template-columns: 1fr;
@@ -1010,6 +1021,17 @@ img, video, iframe {
 
             .booking-wrap {
                 padding: 24px 16px;
+            }
+        }
+
+        /* Keep desktop navigation visible and hamburger hidden */
+        @media (min-width: 901px) {
+            .nav-links {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: none;
             }
         }
     </style>
@@ -1025,34 +1047,31 @@ img, video, iframe {
     <div class="ambient-glow" aria-hidden="true"></div>
 
     <!-- Header / Navigation -->
-
     <header>
-  <a href="#" class="logo">
-    <img src="Favicon.png" alt="Logo" style="height: 32px; width: 32px; object-fit: contain; vertical-align: middle; margin-right: 8px; border-radius: 4px;">
-    komalcounts.me
-</a>
-</a>
+        <div class="nav-wrapper container">
+            <a href="#" class="logo">
+                <img src="Favicon.png" alt="Logo"
+                     style="height: 32px; width: 32px; object-fit: contain; vertical-align: middle; margin-right: 8px; border-radius: 4px;">
+                komalcounts.me
+            </a>
 
             <ul class="nav-links" id="nav-links">
-                <li><a href="#tax-services">Services</a></li>
+                <li><a href="#">Home</a></li>
                 <li><a href="#metrics">Why Us</a></li>
+                <li><a href="#tax-services">Services</a></li>
                 <li><a href="#features">Expertise</a></li>
-                <li><a href="#social-media">Connect</a></li>
-                <li><a href="#book-appointment">Book Appointment</a></li>
             </ul>
 
             <div class="nav-right">
-                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Rest of your page content goes below this -->
-            <div class="nav-right">
-                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">
-                    <span></span><span></span><span></span>
+                <button class="nav-toggle"
+                        id="nav-toggle"
+                        type="button"
+                        aria-label="Toggle navigation menu"
+                        aria-expanded="false"
+                        aria-controls="nav-links">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </div>
         </div>
