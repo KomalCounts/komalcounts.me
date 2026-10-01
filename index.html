@@ -737,43 +737,53 @@
 
         .social-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 14px;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 12px;
         }
 
         .social-item {
             background: var(--bg-surface);
             border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: 22px 10px;
+            border-radius: 14px;
+            padding: 15px 8px 13px;
+            min-height: 92px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            gap: 7px;
             text-decoration: none;
             color: var(--text-main);
-            box-shadow: var(--shadow-subtle);
+            box-shadow: 0 3px 12px rgba(19, 36, 51, 0.045);
             transition: var(--transition-smooth);
         }
 
             .social-item:hover {
-                transform: translateY(-4px);
+                transform: translateY(-3px);
                 border-color: var(--border-hover);
-                box-shadow: var(--shadow-hover);
+                box-shadow: 0 10px 24px rgba(37, 131, 199, 0.12);
             }
 
         .social-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            border-radius: 0;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .social-icon svg {
+            width: 27px;
+            height: 27px;
+            display: block;
         }
 
         .social-label {
-            font-size: 0.84rem;
+            font-size: 0.76rem;
             font-weight: 600;
+            line-height: 1.2;
             text-align: center;
         }
 
@@ -1350,36 +1360,78 @@
             </div>
 
             <div class="social-grid">
-                <a class="social-item" href="https://instagram.com/komalcounts" target="_blank" rel="noopener">
-                    <span class="social-icon" style="background:#e1306c;"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4.2" /></svg></span>
+                <a class="social-item" href="https://instagram.com/komalcounts" target="_blank" rel="noopener" aria-label="Instagram">
+                    <span class="social-icon" style="color:#E1306C;">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2"/>
+                            <circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/>
+                        </svg>
+                    </span>
                     <span class="social-label">Instagram</span>
                 </a>
-                <a class="social-item" href="https://www.linkedin.com/in/komal-counts-85ab89437/" target="_blank" rel="noopener">
-                    <span class="social-icon" style="background:#0a66c2;"><svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9.5 9H13v1.7h.05c.5-.9 1.7-1.9 3.5-1.9 3.7 0 4.45 2.4 4.45 5.6V21h-4v-5.7c0-1.35-.03-3.1-1.9-3.1-1.9 0-2.2 1.5-2.2 3v5.8h-4z" /></svg></span>
+
+                <a class="social-item" href="https://www.linkedin.com/in/komal-counts-85ab89437/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <span class="social-icon" style="color:#0A66C2;">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M6.5 8.5H3V21h3.5V8.5ZM4.75 3A2.1 2.1 0 1 0 4.75 7.2 2.1 2.1 0 0 0 4.75 3ZM21 13.3c0-3.75-2-5.5-4.67-5.5-2.15 0-3.1 1.18-3.63 2.01V8.5H9.2V21h3.5v-6.18c0-1.63.3-3.2 2.32-3.2 1.99 0 2.02 1.86 2.02 3.31V21H21v-7.7Z"/>
+                        </svg>
+                    </span>
                     <span class="social-label">LinkedIn</span>
                 </a>
-                <a class="social-item" href="https://t.me/komalcounts" target="_blank" rel="noopener">
-                    <span class="social-icon" style="background:#26a5e4;"><svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M21.9 4.3 2.7 11.8c-1 .4-1 1.6.1 1.9l4.9 1.5 1.9 5.9c.3.9 1.4 1.1 2.1.4l2.7-2.7 5 3.7c.9.6 2.1.1 2.3-1l3.1-15.4c.3-1.3-1-2.3-2.2-1.8z" /></svg></span>
+
+                <a class="social-item" href="https://t.me/komalcounts" target="_blank" rel="noopener" aria-label="Telegram">
+                    <span class="social-icon" style="color:#229ED9;">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M21.4 4.2 2.8 11.4c-1.27.5-1.25 1.2-.23 1.5l4.76 1.49 1.83 5.7c.23.71.12 1 .86 1 .57 0 .82-.26 1.14-.57l2.31-2.25 4.8 3.54c.88.49 1.52.24 1.74-.82l3.08-14.52c.32-1.3-.5-1.89-1.69-1.28ZM8.06 13.98l10.97-6.92c.55-.33 1.06-.15.64.2l-8.87 8.01-.34 3.66-1.45-4.95-1.95-.61Z"/>
+                        </svg>
+                    </span>
                     <span class="social-label">Telegram</span>
                 </a>
-                <a class="social-item" href="https://www.facebook.com/profile.php?id=100024344101564" target="_blank" rel="noopener">
-                    <span class="social-icon" style="background:#1877f2;"><svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M13.5 21v-7.5H16l.4-3H13.5V8.4c0-.87.24-1.46 1.5-1.46H16.5V4.3C16.2 4.26 15.2 4.17 14 4.17c-2.4 0-4 1.46-4 4.14v2.4H7.5v3H10V21z" /></svg></span>
+
+                <a class="social-item" href="https://www.facebook.com/profile.php?id=100024344101564" target="_blank" rel="noopener" aria-label="Facebook">
+                    <span class="social-icon" style="color:#1877F2;">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M13.5 21v-7.2h2.7l.4-3.1h-3.1V8.73c0-.9.25-1.52 1.55-1.52h1.65V4.44c-.29-.04-1.3-.13-2.48-.13-2.46 0-4.15 1.5-4.15 4.26v2.13H7.3v3.1h2.77V21h3.43Z"/>
+                        </svg>
+                    </span>
                     <span class="social-label">Facebook</span>
                 </a>
-                <a class="social-item" href="https://x.com/komalcounts" target="_blank" rel="noopener">
-                    <span class="social-icon" style="background:#0f1419;"><svg viewBox="0 0 24 24" width="16" height="16" fill="#fff"><path d="M3 3l7.5 9.3L3.2 21H6l6-6.7L16.8 21H21l-7.9-9.8L20.6 3H18l-5.6 6.2L7.2 3z" /></svg></span>
-                    <span class="social-label">Twitter / X</span>
+
+                <a class="social-item" href="https://x.com/komalcounts" target="_blank" rel="noopener" aria-label="X">
+                    <span class="social-icon" style="color:#111111;">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M18.9 2.5h3.68l-8.04 9.19L24 21.5h-7.4l-5.8-7.58-6.64 7.58H.48l8.6-9.83L.8 2.5h7.59l5.24 6.92L18.9 2.5Zm-1.29 16.56h2.04L6.47 4.85H4.28L17.61 19.06Z"/>
+                        </svg>
+                    </span>
+                    <span class="social-label">X</span>
                 </a>
-                <a class="social-item" href="https://snapchat.com/add/komalcounts" target="_blank" rel="noopener">
-                    <span class="social-icon" style="background:#fffc00;"><svg viewBox="0 0 24 24" width="18" height="18" fill="#111"><path d="M12 3c2.7 0 4.6 2 4.6 4.7 0 1 .1 2 .2 2.4.3.1 1 0 1.4-.2.4-.2.9-.1 1 .4.1.5-.2.8-.8 1.1-.2.1-.7.3-.7.6 0 .5 1 1.7 2.6 2 .3.1.5.4.3.8-.3.7-1.8 1-2.3 1.1-.1.2-.1.6-.2.9-.1.4-.4.5-.8.5-.5 0-1-.2-1.9-.1-.8.1-1.4.9-3.4.9s-2.6-.8-3.4-.9c-.9-.1-1.4.1-1.9.1-.4 0-.7-.1-.8-.5-.1-.3-.1-.7-.2-.9-.5-.1-2-.4-2.3-1.1-.2-.4 0-.7.3-.8 1.6-.3 2.6-1.5 2.6-2 0-.3-.5-.5-.7-.6-.6-.3-.9-.6-.8-1.1.1-.5.6-.6 1-.4.4.2 1.1.3 1.4.2.1-.4.2-1.4.2-2.4C7.4 5 9.3 3 12 3z" /></svg></span>
+
+                <a class="social-item" href="https://snapchat.com/add/komalcounts" target="_blank" rel="noopener" aria-label="Snapchat">
+                    <span class="social-icon" style="color:#111111;">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 2.5c3.14 0 5.44 2.36 5.44 5.57v1.2c.37.1.72.13 1.08.02.52-.16 1.06.1 1.2.58.15.5-.13.98-.63 1.16l-.58.2c.13.64.65 1.48 1.62 1.97.48.25.69.82.45 1.3-.35.7-1.33 1.05-2.36 1.24-.1.35-.16.75-.18 1.1.65.24 1.3.36 1.92.45.5.07.84.52.77 1.02-.08.48-.5.81-.98.78-.85-.05-1.78.02-2.73.43-.85.36-1.48 1.02-3.02 1.02s-2.17-.66-3.02-1.02c-.95-.41-1.88-.48-2.73-.43-.48.03-.9-.3-.98-.78-.07-.5.27-.95.77-1.02.62-.09 1.27-.21 1.92-.45-.02-.35-.08-.75-.18-1.1-1.03-.19-2.01-.54-2.36-1.24-.24-.48-.03-1.05.45-1.3.97-.49 1.49-1.33 1.62-1.97l-.58-.2c-.5-.18-.78-.66-.63-1.16.14-.48.68-.74 1.2-.58.36.11.71.08 1.08-.02v-1.2C6.56 4.86 8.86 2.5 12 2.5Z"/>
+                        </svg>
+                    </span>
                     <span class="social-label">Snapchat</span>
                 </a>
-                <a class="social-item" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=komalcounts@gmail.com" target="_blank" rel="noopener">
-                    <span class="social-icon" style="background:#ea4335;"><svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" /></svg></span>
+
+                <a class="social-item" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=komalcounts@gmail.com" target="_blank" rel="noopener" aria-label="Gmail">
+                    <span class="social-icon" style="color:#EA4335;">
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M3.5 6.5 12 13l8.5-6.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M4 18.5V6.9c0-.65.74-1.03 1.25-.64L12 11.3l6.75-5.04c.51-.39 1.25-.01 1.25.64v11.6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </span>
                     <span class="social-label">Gmail</span>
                 </a>
-                <a class="social-item" href="https://www.youtube.com/@komalcounts" target="_blank" rel="noopener">
-                    <span class="social-icon" style="background:#ff0000;"><svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M23 12s0-3.6-.46-5.3a2.9 2.9 0 0 0-2-2.1C18.9 4 12 4 12 4s-6.9 0-8.54.6a2.9 2.9 0 0 0-2 2.1C1 8.4 1 12 1 12s0 3.6.46 5.3a2.9 2.9 0 0 0 2 2.1C5.1 20 12 20 12 20s6.9 0 8.54-.6a2.9 2.9 0 0 0 2-2.1C23 15.6 23 12 23 12zM9.8 15.5v-7l6.2 3.5-6.2 3.5z" /></svg></span>
+
+                <a class="social-item" href="https://www.youtube.com/@komalcounts" target="_blank" rel="noopener" aria-label="YouTube">
+                    <span class="social-icon" style="color:#FF0000;">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M23.5 6.2a3.1 3.1 0 0 0-2.18-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.32.5A3.1 3.1 0 0 0 .5 6.2 32 32 0 0 0 0 12a32 32 0 0 0 .5 5.8 3.1 3.1 0 0 0 2.18 2.2c1.92.5 9.32.5 9.32.5s7.4 0 9.32-.5a3.1 3.1 0 0 0 2.18-2.2A32 32 0 0 0 24 12a32 32 0 0 0-.5-5.8ZM9.5 15.9V8.1l6.5 3.9-6.5 3.9Z"/>
+                        </svg>
+                    </span>
                     <span class="social-label">YouTube</span>
                 </a>
             </div>
@@ -1457,7 +1509,6 @@
         <!-- Footer -->
         <footer>
             <div>&copy; 2026 komalcounts.me. All rights reserved.</div>
-            <div>Founder KomalCounts &bull; Remote &amp; On-Demand Service.</div>
         </footer>
     </main>
 
